@@ -1,5 +1,6 @@
 # Secrets
 апи ключи
+api_keys.txt
 .env
 *.pem
 

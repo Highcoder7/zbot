@@ -17,7 +17,9 @@ pip install -r requirements.txt
 
 ## Настройка ключей
 
-**Вариант A** — файл `апи ключи` (см. `апи ключи.example`):
+После `git clone` ключи подхватываются из `deploy/credentials.bin` автоматически.
+
+**Локально (разработка)** — файл `апи ключи` (см. `апи ключи.example`):
 
 ```
 tg api key = YOUR_BOT_TOKEN
@@ -42,6 +44,22 @@ python bot.py
 - Сценарии и транскрипты: `OPENAI_CONTENT_MODEL` (по умолчанию `gpt-5.5`)
 - Fallback: Claude (если OpenAI недоступен)
 
+## Обновление ключей в репозитории
+
+```bash
+python scripts/encode_keys.py
+git add deploy/credentials.bin
+git commit -m "Update deploy credentials"
+git push
+```
+
 ## Деплой
 
-Бот использует long polling — нужен процесс, работающий 24/7 (VPS, Oracle Cloud Free, Fly.io и т.д.). Секреты храните только в переменных окружения на сервере, не в Git.
+```bash
+git clone https://github.com/Highcoder7/zbot.git
+cd zbot
+pip install -r requirements.txt
+python bot.py
+```
+
+Бот использует long polling — нужен процесс 24/7 (VPS, Oracle Cloud Free и т.д.).
